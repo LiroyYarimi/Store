@@ -15,6 +15,7 @@ extension UIColor{
     }
 }
 
+/*
 extension UIView{
     func addConstraintsWithVisualFormat(format: String, views: UIView...){
         
@@ -27,3 +28,4 @@ extension UIView{
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDictionary))
     }
 }
+*/
