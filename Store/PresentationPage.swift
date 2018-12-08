@@ -10,34 +10,39 @@ import UIKit
 
 class PresentationPage:  BaseCell,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let imageNames = ["bear_first","heart_second","leaf_third"]
-    var indexCell = 0
-    var timer = Timer()
-    var pageCell = PageCell()
+    let imageNames = ["bear_first","heart_second","leaf_third","nedstark"]
+    
+    //var indexCell = 0
+    //var timer = Timer()
+//    var pageCell = PageCell(){
+//        didSet{
+//            //timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
+//        }
+//    }
     
     // called every time interval from the timer
-    @objc func timerAction() {
-        
-        indexCellNext()
-        nextCell()
-        
-    }
+//    @objc func timerAction() {
+//
+//        indexCellNext()
+//        nextCell()
+//
+//    }
     
-    func nextCell(){
-        timer.invalidate()
-        pageCell.pageControl.currentPage = indexCell
-        let imageName = imageNames[indexCell]
-        pageCell.imageView.image = UIImage(named: imageName)
-        
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
-    }
-    
-    func indexCellNext(){
-        indexCell += 1
-        if indexCell >= pageCell.pageControl.numberOfPages {
-            indexCell = 0
-        }
-    }
+//    func nextCell(){
+//        timer.invalidate()
+//        pageCell.pageControl.currentPage = indexCell
+//        let imageName = imageNames[indexCell]
+//        pageCell.imageView.image = UIImage(named: imageName)
+//
+//        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
+//    }
+//
+//    func indexCellNext(){
+//        indexCell += 1
+//        if indexCell >= pageCell.pageControl.numberOfPages {
+//            indexCell = 0
+//        }
+//    }
     
     
     // create new collection view inside our cell - collection view for our apps.
@@ -53,6 +58,9 @@ class PresentationPage:  BaseCell,UICollectionViewDataSource, UICollectionViewDe
     }()
     
     let cellId = "cellId"
+//    var currentCell :PageCell?
+    
+    //MARK:- MAIN function - setupViews
     
     override func setupViews(){
         
@@ -79,37 +87,48 @@ class PresentationPage:  BaseCell,UICollectionViewDataSource, UICollectionViewDe
         collectionView.showsHorizontalScrollIndicator = false //hide scroll bar
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        print("hello")
-        indexCellNext()
-        nextCell()
-        
+    //didSelectItemAt - user did select
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("pressentation - didSelectItemAt \(indexPath.item)")
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+//        if let cell = currentCell{
+//            print("scrollViewWillEndDragging: \(cell.pageControl.currentPage)")
+//
+//        }
+    }
+    
+    //numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageNames.count
     }
     
+    //cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PageCell
-        
-        
-        indexCellNext()
-        //nextCell()
-        
 
+        let indexCell = indexPath.item
         let imageName = imageNames[indexCell]
         cell.imageView.image = UIImage(named: imageName)
         cell.numberOfPage = imageNames.count
         cell.pageControl.currentPage = indexCell
-//        cell.cellIndex = indexPath.item
-        pageCell = cell
+        //pageCell = cell
         
-//        timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
-//        print("bla")
+//        currentCell = cell
+        
         return cell
+        
+//        indexCellNext()
+//
+//        let imageName = imageNames[indexCell]//indexPath.item
+//        cell.imageView.image = UIImage(named: imageName)
+//        cell.numberOfPage = imageNames.count
+//        cell.pageControl.currentPage = indexCell
+//        pageCell = cell
+        
+       // return cell
     }
 
     

@@ -52,7 +52,7 @@ class MenuBar: BaseCell,UICollectionViewDataSource, UICollectionViewDelegate, UI
     
     //move the rectangle white menu, under the user choice
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        print("menu bar - didSelectItemAt: \(indexPath.item)")
         
         
 //        //make animate

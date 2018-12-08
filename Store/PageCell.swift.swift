@@ -13,6 +13,8 @@ class PageCell: BaseCell {
     let mainPink = UIColor.rgb(red: 232, green: 68, blue: 133)
     let lightPink = UIColor.rgb(red: 249, green: 207, blue: 224)//pink gray color
 
+    
+    
     var numberOfPage: Int?{
         didSet{
             if let pages = numberOfPage{
